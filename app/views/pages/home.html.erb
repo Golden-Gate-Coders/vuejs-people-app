@@ -1,9 +1,24 @@
 <h1>Interesting People App</h1>
 
 <div id="app">
+
+  <h2>Number of people: {{ people.length }} </h2>
+
   <div v-for="person in people">
-    <h3>{{person.name}}</h3>
-    <p>{{person.bio}}</p>
+    <h3 v-on:click="toggleBio(person)">{{person.name}}</h3>
+    <p v-bind:class="{strike: person.bioVisible}">{{person.bio}}</p>
+    <button v-on:click="deletePerson(person)">Delete</button>
   </div>
+
+  <div>
+    <h3>Add new person:</h3>
+
+    Name: <input type="text" v-model="newName">
+    Bio: <input type="text" v-model="newBio">
+    <button v-on:click="createPerson()">Create Person</button>
+
+  </div>
+
+
 </div>
 

@@ -21,9 +21,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
         {
           name: "Živa",
           bio: "Excepteur shabby chic semiotics Marfa, quinoa try-hard polaroid pariatur banh mi selfies incididunt brunch trust fund. Ethical dolor PBR&B Tumblr. Freegan ugh you probably haven't heard of them adipisicing mustache farm-to-table. Plaid enim aliqua laboris kale chips nesciunt, velit Austin meh wayfarers selfies flannel consequat. Shabby chic Neutra YOLO mumblecore hella, cray chambray id swag minim sriracha paleo. Butcher consequat pug placeat, hoodie esse dolor excepteur literally aute umami fixie. Voluptate craft beer fashion axe nesciunt Cosby sweater, narwhal id Truffaut American Apparel kale chips quinoa gentrify aesthetic Brooklyn.",
+          bioVisible: true
+        }
+      ],
+      newName: '',
+      newBio: ''
+    },
+    methods: {
+      toggleBio: function(person) {
+        // if (person.bioVisible == true) {
+        //   person.bioVisible = false;
+        // } else {
+        //   person.bioVisible = true;
+        // }
+        person.bioVisible = !person.bioVisible;
+      },
+      createPerson: function() {
+        var newPerson = {
+          name: this.newName,
+          bio: this.newBio,
           bioVisible: false
         }
-      ]
+
+        this.people.push(newPerson);
+        this.newName = '';
+        this.newBio = '';
+      },
+      deletePerson: function(person) {
+        var index = this.people.indexOf(person);
+        this.people.splice(index, 1);
+      }
     }
   });
 });
