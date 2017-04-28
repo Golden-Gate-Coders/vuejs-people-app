@@ -4,4 +4,10 @@ class Api::V1::PeopleController < ApplicationController
     @people = Person.all
   end
 
+  def create
+    @person = Person.new(name: params[:name], bio: params[:bio], bioVisible: false)
+    @person.save
+    render 'show.json.jbuilder'
+  end
+
 end
