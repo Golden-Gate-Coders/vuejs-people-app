@@ -4,7 +4,8 @@ var app = new Vue({
   data: {
     people: [],
     newName: '',
-    newBio: ''
+    newBio: '',
+    errors: []
   },
   mounted: function() {
     // Grab the data from the API we built
@@ -12,7 +13,6 @@ var app = new Vue({
 
     $.get('http://localhost:3000/api/v1/people.json', function(result) {
       this.people = result;
-      console.log(result);
     }.bind(this))
 
   },
@@ -43,7 +43,10 @@ var app = new Vue({
         this.people.push(result);
         this.newName = '';
         this.newBio = '';
-      }.bind(this))
+        this.errors = [];
+      }.bind(this)).fail( function (result) {
+        this.errors = result.responseJSON.errors;
+      }.bind(this));
 
     },
     deletePerson: function(person) {

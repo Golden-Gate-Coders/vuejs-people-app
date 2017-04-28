@@ -11,6 +11,12 @@
 
   <div>
     <h3>Add new person:</h3>
+
+    <ul>
+      <li v-for="error in errors"> {{ error }} </li>
+    </ul>
+
+    <br>
     Name: <input type="text" v-model="newName">
     Bio: <input type="text" v-model="newBio">
     <button v-on:click="createPerson()">Create Person</button>
