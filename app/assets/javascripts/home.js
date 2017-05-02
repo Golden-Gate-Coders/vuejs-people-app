@@ -5,12 +5,12 @@ var app = new Vue({
     people: [],
     newName: '',
     newBio: '',
-    errors: []
+    errors: [],
+    nameFilter: ''
   },
   mounted: function() {
     // Grab the data from the API we built
     // Fill in the people array with that data
-
     $.get('http://localhost:3000/api/v1/people.json', function(result) {
       this.people = result;
     }.bind(this))
@@ -52,6 +52,9 @@ var app = new Vue({
     deletePerson: function(person) {
       var index = this.people.indexOf(person);
       this.people.splice(index, 1);
+    },
+    isValidPerson: function(person) {
+      return person.name.includes(this.nameFilter);
     }
   }
 });

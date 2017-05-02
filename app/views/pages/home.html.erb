@@ -3,7 +3,13 @@
 <div id="app">
   <h2>Number of people: {{ people.length }} </h2>
 
-  <div v-for="person in people">
+  <br>
+    <input type="text" v-model="nameFilter">
+  <br>
+  Filtering by name: {{ nameFilter }}
+  <br>
+
+  <div v-for="person in people" v-if="isValidPerson(person)">
     <h3 v-on:click="toggleBio(person)">{{person.name}}</h3>
     <p v-bind:class="{strike: person.bioVisible}">{{person.bio}}</p>
     <button v-on:click="deletePerson(person)">Delete</button>
