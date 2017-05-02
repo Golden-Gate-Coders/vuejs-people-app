@@ -54,7 +54,7 @@ var app = new Vue({
       this.people.splice(index, 1);
     },
     isValidPerson: function(person) {
-      return person.name.includes(this.nameFilter);
+      return person.name.toLowerCase().includes(this.nameFilter.toLowerCase());
     }
   }
 });
